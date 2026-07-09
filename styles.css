@@ -402,6 +402,34 @@ footer {
 .coming-soon h3 { margin-bottom: 8px; }
 .coming-soon p { margin: 0 auto; font-size: 0.92rem; color: #435A66; }
 
+.founder-feature {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--cream-deep);
+  border-radius: 8px;
+  padding: 40px;
+  margin-bottom: 48px;
+}
+.founder-feature .facilitator-avatar {
+  width: 160px; height: 160px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.founder-feature strong { font-size: 1.3rem; }
+.founder-feature .fac-bio { max-width: none; margin: 12px 0 0; text-align: left; font-size: 0.95rem; line-height: 1.7; }
+
+.more-facilitators-label {
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9A9A96;
+  margin-bottom: 28px;
+}
+
 .facilitator-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -419,10 +447,15 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
+.facilitator-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .facilitator-avatar .spark { width: 22px; height: 22px; opacity: 0.5; }
-.facilitator-card strong { display: block; color: var(--navy); font-family: var(--font-display); }
+.facilitator-card strong { display: block; color: var(--navy); font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 2px; }
 .facilitator-card span { font-size: 0.82rem; color: #7A7A76; }
+.facilitator-card .fac-bio { font-size: 0.85rem; color: #6C6C68; margin: 10px auto 0; max-width: 26ch; }
+.facilitator-card.is-placeholder .facilitator-avatar { background: var(--cream-deep); border-style: dashed; }
+.facilitator-card.is-placeholder strong { color: #A8A8A2; }
 
 /* ---------- Pricing ---------- */
 
@@ -467,7 +500,8 @@ footer {
 
 .capacity-note {
   text-align: center;
-  margin-top: 36px;
+  margin: 36px auto 0;
+  max-width: 640px;
   font-size: 0.92rem;
   color: var(--navy);
 }
@@ -530,6 +564,9 @@ footer {
   .detail-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
   .expect-grid, .pricing-grid, .facilitator-grid { grid-template-columns: 1fr; }
+  .founder-feature { grid-template-columns: 1fr; text-align: center; }
+  .founder-feature .facilitator-avatar { margin: 0 auto; }
+  .founder-feature .fac-bio { text-align: center; }
   .nav-links {
     position: absolute;
     top: 100%; left: 0; right: 0;
