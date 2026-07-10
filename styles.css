@@ -603,60 +603,84 @@ footer {
 .coming-soon h3 { margin-bottom: 8px; }
 .coming-soon p { margin: 0 auto; font-size: 0.92rem; color: #435A66; }
 
-.founder-feature {
+.wisdom-keeper {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 36px;
-  align-items: center;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: start;
   background: var(--white);
   border: 1px solid var(--cream-deep);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 40px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
-.founder-feature .facilitator-avatar {
-  width: 160px; height: 160px;
-  margin: 0;
-  flex-shrink: 0;
-}
-.founder-feature strong { font-size: 1.3rem; }
-.founder-feature .fac-bio { max-width: none; margin: 12px 0 0; text-align: left; font-size: 0.95rem; line-height: 1.7; }
+.wisdom-keeper.is-reversed { grid-template-columns: 1fr 280px; }
+.wisdom-keeper.is-reversed .wk-photo { order: 2; }
+.wisdom-keeper.is-reversed .wk-body { order: 1; }
 
-.more-facilitators-label {
-  text-align: center;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+.wk-photo {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 20px 40px -20px rgba(16, 49, 63, 0.3);
+}
+.wk-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.wk-photo:hover img { transform: scale(1.08); }
+
+.wk-body strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.wk-body .wk-title {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #9A9A96;
-  margin-bottom: 28px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.wk-body .wk-bio {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #4A4A48;
+  max-width: 62ch;
 }
 
-.facilitator-grid {
+.wisdom-keeper-placeholders {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
+  margin-top: 32px;
 }
-.facilitator-card {
+.wk-placeholder-card {
   text-align: center;
-}
-.facilitator-avatar {
-  width: 120px; height: 120px;
-  border-radius: 50%;
+  padding: 36px 24px;
+  border: 1px dashed var(--sky);
+  border-radius: 10px;
   background: var(--sky-soft);
+}
+.wk-placeholder-avatar {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  background: var(--white);
   border: 1px solid var(--sky);
-  margin: 0 auto 16px;
+  margin: 0 auto 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
-.facilitator-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.facilitator-avatar .spark { width: 22px; height: 22px; opacity: 0.5; }
-.facilitator-card strong { display: block; color: var(--navy); font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 2px; }
-.facilitator-card span { font-size: 0.82rem; color: #7A7A76; }
-.facilitator-card .fac-bio { font-size: 0.85rem; color: #6C6C68; margin: 10px auto 0; max-width: 26ch; }
-.facilitator-card.is-placeholder .facilitator-avatar { background: var(--cream-deep); border-style: dashed; }
-.facilitator-card.is-placeholder strong { color: #A8A8A2; }
+.wk-placeholder-avatar .spark { width: 20px; height: 20px; opacity: 0.5; }
+.wk-placeholder-card strong { display: block; color: #6E8794; font-family: var(--font-display); font-size: 1rem; }
+.wk-placeholder-card span { font-size: 0.8rem; color: #8CA3AE; }
 
 /* ---------- Pricing ---------- */
 
@@ -764,10 +788,16 @@ footer {
   .teaser-meta { justify-content: center; }
   .detail-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
-  .expect-grid, .pricing-grid, .facilitator-grid { grid-template-columns: 1fr; }
-  .founder-feature { grid-template-columns: 1fr; text-align: center; }
-  .founder-feature .facilitator-avatar { margin: 0 auto; }
-  .founder-feature .fac-bio { text-align: center; }
+  .expect-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .wisdom-keeper, .wisdom-keeper.is-reversed {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 28px;
+  }
+  .wisdom-keeper .wk-photo { order: 1; max-width: 220px; margin: 0 auto; }
+  .wisdom-keeper .wk-body { order: 2; }
+  .wk-body .wk-bio { text-align: left; }
+  .wisdom-keeper-placeholders { grid-template-columns: 1fr; }
   .nav-links {
     position: absolute;
     top: 100%; left: 0; right: 0;
