@@ -12,6 +12,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
+   WELCOME POPUP (Wildly Rooted invite)
+   --------------------------------------------------------------------------
+   Shows once per browser session on the homepage only. Uses sessionStorage
+   so it reappears on a fresh visit/new tab but won't nag someone browsing
+   between pages during the same visit.
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('welcomePopup');
+  if (!popup) return;
+
+  const closeBtn = document.getElementById('welcomePopupClose');
+  const STORAGE_KEY = 'ihp_welcome_popup_shown';
+
+  const closePopup = () => {
+    popup.classList.remove('is-visible');
+    try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) { /* private browsing, ignore */ }
+  };
+
+  let alreadyShown = false;
+  try { alreadyShown = sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { /* ignore */ }
+
+  if (!alreadyShown) {
+    setTimeout(() => popup.classList.add('is-visible'), 500);
+  }
+
+  closeBtn.addEventListener('click', closePopup);
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) closePopup();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popup.classList.contains('is-visible')) closePopup();
+  });
+});
+
+/* --------------------------------------------------------------------------
    PRICING TIERS
    --------------------------------------------------------------------------
    Stripe currently only has ONE payment link (the $475 Early rate). A single

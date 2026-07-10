@@ -296,21 +296,27 @@ section.tight { padding: 64px 0; }
 .story-portrait {
   position: relative;
   aspect-ratio: 4 / 5;
-  border-radius: 50% 50% 48% 52% / 55% 52% 48% 45%;
-  background: linear-gradient(150deg, var(--sky-soft), var(--cream-deep));
-  border: 1px solid rgba(27, 77, 102, 0.15);
+  border-radius: 12px;
+  background: var(--cream-deep);
+  box-shadow: 0 30px 60px -28px rgba(16, 49, 63, 0.35), 0 8px 20px -10px rgba(16, 49, 63, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 40px;
   overflow: hidden;
+}
+.story-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(27, 77, 102, 0.12);
+  pointer-events: none;
 }
 .story-portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: inherit;
   transition: transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
   transform: scale(1);
 }
@@ -323,6 +329,24 @@ section.tight { padding: 64px 0; }
   text-transform: uppercase;
   color: var(--navy);
   opacity: 0.55;
+}
+
+.story-portrait-caption {
+  text-align: center;
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--navy);
+  max-width: none;
+}
+.story-portrait-caption span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9A9A96;
+  margin-top: 4px;
 }
 
 .story-copy p { margin-bottom: 20px; color: #3E3E3B; }
@@ -350,58 +374,88 @@ section.tight { padding: 64px 0; }
 .teaser-meta div { font-size: 0.92rem; color: var(--navy); }
 .teaser-meta strong { display: block; font-weight: 700; }
 
-/* ---------- Floating invitation card ---------- */
+/* ---------- Welcome popup (Wildly Rooted invite) ---------- */
 
-.invite-float-wrap {
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(16, 49, 63, 0.72);
+  backdrop-filter: blur(4px);
   display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 10px 0 20px;
-  perspective: 1000px;
-}
-
-.invite-float-card {
-  display: block;
-  width: 260px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 30px 60px -20px rgba(16, 49, 63, 0.45), 0 10px 24px -10px rgba(16, 49, 63, 0.3);
-  transform: rotate(-3deg);
-  animation: inviteFloat 6s ease-in-out infinite;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  border: 6px solid var(--white);
-  position: relative;
-}
-.invite-float-card::after {
-  content: 'View Event →';
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: 14px 0 12px;
-  text-align: center;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: linear-gradient(0deg, rgba(16,49,63,0.88) 0%, rgba(16,49,63,0) 100%);
+  padding: 24px;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
-.invite-float-card:hover {
-  transform: rotate(0deg) scale(1.045);
-  box-shadow: 0 40px 70px -18px rgba(16, 49, 63, 0.55), 0 14px 30px -8px rgba(16, 49, 63, 0.35);
-  animation-play-state: paused;
+.welcome-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
 }
-.invite-float-card:hover::after { opacity: 1; }
-.invite-float-card img { width: 100%; display: block; }
 
-@keyframes inviteFloat {
-  0%   { transform: rotate(-3deg) translateY(0px); }
-  50%  { transform: rotate(-1.5deg) translateY(-14px); }
-  100% { transform: rotate(-3deg) translateY(0px); }
+.welcome-modal {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.5);
+  transform: scale(0.94) translateY(10px);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
 }
-@media (prefers-reduced-motion: reduce) {
-  .invite-float-card { animation: none; }
+.welcome-overlay.is-visible .welcome-modal {
+  transform: scale(1) translateY(0);
 }
+
+.welcome-modal img {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.welcome-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(16, 49, 63, 0.85);
+  color: var(--cream);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+.welcome-close:hover {
+  background: var(--navy-dark);
+  transform: scale(1.08);
+}
+
+.welcome-modal-footer {
+  padding: 18px 24px 22px;
+  text-align: center;
+  border-top: 1px solid var(--cream-deep);
+}
+.welcome-modal-footer .btn { width: 100%; justify-content: center; }
+
+@media (max-width: 480px) {
+  .welcome-modal { max-width: 320px; }
+}
+
+/* ---------- Static invitation showcase (events page) ---------- */
 
 .invite-showcase {
   display: flex;
