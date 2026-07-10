@@ -472,6 +472,32 @@ section.tight { padding: 64px 0; }
 
 /* ---------- Closing mantra ---------- */
 
+.mantra-photo-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mantra-photo-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('images/mantra-photo.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  z-index: -2;
+  animation: heroKenBurns 26s ease-in-out infinite alternate;
+}
+.mantra-photo-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(16,49,63,0.75) 0%, rgba(16,49,63,0.88) 70%, rgba(16,49,63,0.94) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mantra-photo-section::before { animation: none; }
+}
+
 .mantra {
   text-align: center;
   padding: 110px 0;
