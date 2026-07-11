@@ -134,3 +134,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/* --------------------------------------------------------------------------
+   GALLERY SCROLL REVEAL
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.masonry-item');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = (Array.from(items).indexOf(el) % 6) * 80;
+        setTimeout(() => el.classList.add('is-visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach((el) => observer.observe(el));
+});
