@@ -630,8 +630,35 @@ footer {
   margin-bottom: 32px;
 }
 .wisdom-keeper.is-reversed { grid-template-columns: 1fr 280px; }
-.wisdom-keeper.is-reversed .wk-photo { order: 2; }
+.wisdom-keeper.is-reversed .wk-photo-col { order: 2; }
 .wisdom-keeper.is-reversed .wk-body { order: 1; }
+
+.wk-photo-col { display: flex; flex-direction: column; align-items: center; }
+
+.wk-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.wk-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--cream-deep);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.wk-social a svg { width: 16px; height: 16px; }
+.wk-social a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-dark);
+  transform: translateY(-2px);
+}
 
 .wk-photo {
   border-radius: 8px;
@@ -845,7 +872,7 @@ footer {
     text-align: center;
     padding: 28px;
   }
-  .wisdom-keeper .wk-photo { order: 1; max-width: 220px; margin: 0 auto; }
+  .wisdom-keeper .wk-photo-col { order: 1; max-width: 220px; margin: 0 auto; }
   .wisdom-keeper .wk-body { order: 2; }
   .wk-body .wk-bio { text-align: left; }
   .wisdom-keeper-placeholders { grid-template-columns: 1fr; }
