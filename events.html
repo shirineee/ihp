@@ -25,7 +25,15 @@
     </button>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="events.html" class="is-current">Events</a>
+      <div class="nav-dropdown is-current">
+        <button class="nav-dropdown-trigger" type="button">Events
+          <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="events.html">Events</a>
+          <a href="past-events.html">Past Events</a>
+        </div>
+      </div>
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
       <a href="events.html#pricing" class="btn-shimmer-base btn-shimmer-light">Register Here</a>

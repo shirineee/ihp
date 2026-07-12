@@ -161,3 +161,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   items.forEach((el) => observer.observe(el));
 });
+
+/* --------------------------------------------------------------------------
+   NAV DROPDOWN (Events / Past Events)
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  if (!dropdowns.length) return;
+
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('is-open');
+      dropdowns.forEach((d) => d.classList.remove('is-open'));
+      if (!isOpen) dropdown.classList.add('is-open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    dropdowns.forEach((d) => d.classList.remove('is-open'));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') dropdowns.forEach((d) => d.classList.remove('is-open'));
+  });
+});
