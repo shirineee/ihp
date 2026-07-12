@@ -135,9 +135,11 @@ p { max-width: 62ch; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 28px;
   font-size: 0.92rem;
   font-weight: 500;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .nav-links a:not(.btn-nav) { color: var(--navy); position: relative; padding: 4px 0; }
 .nav-links a:not(.btn-nav)::after {
@@ -163,6 +165,54 @@ p { max-width: 62ch; }
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .btn-nav:hover { background: var(--gold-soft); transform: translateY(-1px); }
+
+/* ---------- Shimmer CTA button ---------- */
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(100deg, var(--navy) 0%, var(--gold) 22%, var(--navy) 44%, var(--gold) 66%, var(--navy) 88%, var(--gold) 100%);
+  background-size: 300% 100%;
+  animation: shimmerMove 5s linear infinite;
+  color: var(--cream) !important;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px -6px rgba(16, 49, 63, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: shimmerSweep 3.2s ease-in-out infinite;
+}
+.btn-shimmer:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -8px rgba(16, 49, 63, 0.6);
+}
+@keyframes shimmerMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@keyframes shimmerSweep {
+  0% { left: -60%; }
+  55% { left: 130%; }
+  100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-shimmer, .btn-shimmer::after { animation: none; }
+}
+
+@media (max-width: 880px) {
+  .btn-shimmer { width: 100%; justify-content: center; display: flex; }
+}
 
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
 
@@ -882,6 +932,7 @@ footer {
     background: var(--cream);
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 24px 32px;
     gap: 20px;
     display: none;
