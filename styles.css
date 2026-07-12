@@ -166,37 +166,54 @@ p { max-width: 62ch; }
 }
 .btn-nav:hover { background: var(--gold-soft); transform: translateY(-1px); }
 
-/* ---------- Shimmer CTA button ---------- */
+/* ---------- Shimmer CTA buttons ---------- */
 
-.btn-shimmer {
+.btn-shimmer-base {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(100deg, var(--navy) 0%, var(--gold) 22%, var(--navy) 44%, var(--gold) 66%, var(--navy) 88%, var(--gold) 100%);
-  background-size: 300% 100%;
-  animation: shimmerMove 5s linear infinite;
-  color: var(--cream) !important;
-  padding: 11px 24px;
+  padding: 12px 34px;
   border-radius: 30px;
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  box-shadow: 0 6px 18px -6px rgba(16, 49, 63, 0.5);
+  background-size: 300% 100%;
+  animation: shimmerMove 5s linear infinite;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
 }
-.btn-shimmer::after {
+.btn-shimmer-base::after {
   content: '';
   position: absolute;
   top: 0; left: -60%;
   width: 40%; height: 100%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
   transform: skewX(-20deg);
   animation: shimmerSweep 3.2s ease-in-out infinite;
 }
-.btn-shimmer:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px -8px rgba(16, 49, 63, 0.6);
+.btn-shimmer-base:hover { transform: translateY(-1px); }
+
+/* Dark navy shimmer — Join our IHP Community */
+.btn-shimmer-dark {
+  background-image: linear-gradient(100deg, var(--navy-dark) 0%, var(--navy) 22%, #2E7797 44%, var(--navy) 66%, var(--navy-dark) 88%, var(--navy) 100%);
+  color: var(--cream) !important;
+  box-shadow: 0 6px 18px -6px rgba(16, 49, 63, 0.5);
 }
+.btn-shimmer-dark::after {
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+}
+.btn-shimmer-dark:hover { box-shadow: 0 10px 24px -8px rgba(16, 49, 63, 0.6); }
+
+/* Light gold shimmer — Register Here */
+.btn-shimmer-light {
+  background-image: linear-gradient(100deg, var(--gold) 0%, var(--gold-soft) 22%, var(--cream) 44%, var(--gold-soft) 66%, var(--gold) 88%, var(--gold-soft) 100%);
+  color: var(--navy-dark) !important;
+  box-shadow: 0 6px 18px -6px rgba(232, 162, 74, 0.5);
+}
+.btn-shimmer-light::after {
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.7) 50%, transparent 100%);
+}
+.btn-shimmer-light:hover { box-shadow: 0 10px 24px -8px rgba(232, 162, 74, 0.6); }
+
 @keyframes shimmerMove {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
@@ -207,11 +224,11 @@ p { max-width: 62ch; }
   100% { left: 130%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn-shimmer, .btn-shimmer::after { animation: none; }
+  .btn-shimmer-base, .btn-shimmer-base::after { animation: none; }
 }
 
 @media (max-width: 880px) {
-  .btn-shimmer { width: 100%; justify-content: center; display: flex; }
+  .btn-shimmer-base { width: 100%; text-align: center; }
 }
 
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
