@@ -571,7 +571,7 @@ section.tight { padding: 64px 0; }
 
 .welcome-modal {
   position: relative;
-  max-width: 380px;
+  max-width: 560px;
   width: 100%;
   background: var(--white);
   border-radius: 16px;
@@ -579,7 +579,7 @@ section.tight { padding: 64px 0; }
   box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.5);
   transform: scale(0.94) translateY(10px);
   transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-  max-height: 88vh;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
 }
@@ -626,7 +626,7 @@ section.tight { padding: 64px 0; }
 .welcome-modal-footer .btn { width: 100%; justify-content: center; }
 
 @media (max-width: 480px) {
-  .welcome-modal { max-width: 320px; }
+  .welcome-modal { max-width: 92vw; }
 }
 
 /* ---------- Static invitation showcase (events page) ---------- */
