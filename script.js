@@ -213,12 +213,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const parent = el.parentElement;
         const count = parentCounts.get(parent) || 0;
         parentCounts.set(parent, count + 1);
-        const delay = Math.min(count, 4) * 150;
+        const delay = Math.min(count, 4) * 70;
         setTimeout(() => el.classList.add('is-visible'), delay);
         observer.unobserve(el);
       }
     });
-  }, { threshold: 0.3, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.01, rootMargin: '0px 0px 15% 0px' });
 
   lines.forEach((el) => observer.observe(el));
 });

@@ -406,7 +406,7 @@ p { max-width: 62ch; }
 /* ---------- Come Home to Yourself — scroll reveal ---------- */
 
 .reveal-section {
-  padding: 76px 0;
+  padding: 44px 0;
 }
 .reveal-wrap {
   max-width: 760px;
@@ -430,8 +430,8 @@ p { max-width: 62ch; }
 
 .reveal-line {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
 }
 .reveal-line.is-visible {
   opacity: 1;
@@ -464,7 +464,7 @@ p { max-width: 62ch; }
 }
 
 /* ---------- Homepage-only tighter section rhythm ---------- */
-.home-section-tight { padding: 66px 0 !important; }
+.home-section-tight { padding: 42px 0 !important; }
 
 .hero .lede { margin: 0 auto 40px; }
 
@@ -480,7 +480,7 @@ p { max-width: 62ch; }
 .hero-photo {
   position: relative;
   background: var(--navy-dark);
-  padding: 130px 0 70px;
+  padding: 110px 0 44px;
   overflow: hidden;
   isolation: isolate;
 }
