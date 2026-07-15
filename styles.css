@@ -260,11 +260,13 @@ p { max-width: 62ch; }
 .btn-shimmer-base {
   position: relative;
   overflow: hidden;
-  padding: 17px 46px;
-  border-radius: 30px;
+  padding: 20px 52px;
+  min-width: 230px;
+  text-align: center;
+  border-radius: 40px;
   font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.015em;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1;
