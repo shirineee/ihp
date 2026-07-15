@@ -190,3 +190,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') dropdowns.forEach((d) => d.classList.remove('is-open'));
   });
 });
+
+/* --------------------------------------------------------------------------
+   SCROLL REVEAL TEXT (Come Home to Yourself section)
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const lines = document.querySelectorAll('.reveal-line');
+  if (!lines.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    lines.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = Array.from(lines).indexOf(el) * 150;
+        setTimeout(() => el.classList.add('is-visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '0px 0px -60px 0px' });
+
+  lines.forEach((el) => observer.observe(el));
+});
