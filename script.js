@@ -204,11 +204,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  const parentCounts = new WeakMap();
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const el = entry.target;
-        const delay = Array.from(lines).indexOf(el) * 150;
+        const parent = el.parentElement;
+        const count = parentCounts.get(parent) || 0;
+        parentCounts.set(parent, count + 1);
+        const delay = Math.min(count, 4) * 150;
         setTimeout(() => el.classList.add('is-visible'), delay);
         observer.unobserve(el);
       }
