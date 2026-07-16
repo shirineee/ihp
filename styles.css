@@ -1045,6 +1045,22 @@ footer {
 }
 .event-card.is-linked:hover .event-card-image img { transform: scale(1.06); }
 
+/* Side-by-side split image, grayscale -> color on hover */
+.event-card-image.split-image {
+  display: flex;
+}
+.event-card-image.split-image img {
+  width: 50%;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+}
+.event-card-image.split-image img:first-child {
+  border-right: 1px solid rgba(250,245,235,0.5);
+}
+.event-card.is-linked:hover .event-card-image.split-image img {
+  filter: grayscale(0%);
+}
+
 .event-card-body {
   padding: 30px 30px 32px;
   display: flex;
