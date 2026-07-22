@@ -298,3 +298,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* --------------------------------------------------------------------------
+   SHIMMER BUTTON — CONTINUOUS ANIMATION ACROSS PAGE LOADS
+   --------------------------------------------------------------------------
+   CSS animations always restart at 0% on a fresh page load/refresh — there's
+   no way around that in pure CSS. This works around it: on every page load,
+   we calculate how far into the animation cycle "real time" would have
+   reached (based on the actual clock, not page-load time), and set a
+   matching negative animation-delay. The animation still technically
+   restarts, but it restarts already mid-cycle at the "correct" point, so
+   it reads as one continuous shimmer that never stopped, even across a
+   full page refresh or navigating to a different page.
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.btn-shimmer-base');
+  if (!buttons.length) return;
+
+  const now = Date.now();
+  const shimmerDuration = 6000;   // matches shimmerMove's 6s
+  const sweepDuration = 3600;     // matches shimmerSweep's 3.6s
+
+  const shimmerDelay = -((now % shimmerDuration) / 1000);
+  const sweepDelay = -((now % sweepDuration) / 1000);
+
+  buttons.forEach((btn) => {
+    btn.style.setProperty('--shimmer-delay', shimmerDelay + 's');
+    btn.style.setProperty('--sweep-delay', sweepDelay + 's');
+  });
+});

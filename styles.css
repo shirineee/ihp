@@ -326,7 +326,8 @@ p { max-width: 62ch; }
   white-space: nowrap;
   line-height: 1;
   background-size: 300% 100%;
-  animation: shimmerMove 6s linear infinite;
+  animation: shimmerMove 6s linear infinite alternate;
+  animation-delay: var(--shimmer-delay, 0s);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: inline-block;
 }
@@ -338,6 +339,7 @@ p { max-width: 62ch; }
   filter: blur(6px);
   transform: skewX(-18deg);
   animation: shimmerSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: var(--sweep-delay, 0s);
 }
 .btn-shimmer-base:hover { transform: translateY(-1px); }
 
