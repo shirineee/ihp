@@ -222,3 +222,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
   lines.forEach((el) => observer.observe(el));
 });
+
+/* --------------------------------------------------------------------------
+   EVENT PAGE STICKY SUB-NAV
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const subnav = document.getElementById('eventSubnav');
+  if (!subnav) return;
+
+  const showAfter = 480;
+  const onScroll = () => {
+    if (window.scrollY > showAfter) {
+      subnav.classList.add('is-visible');
+    } else {
+      subnav.classList.remove('is-visible');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+});
+
+/* --------------------------------------------------------------------------
+   LIVE CAPACITY INDICATOR (Wildly Rooted)
+   --------------------------------------------------------------------------
+   This is NOT connected to Stripe or any live registration count — there's
+   no backend to pull that from. Update the number below by hand whenever
+   headcount changes, and the bar + text will reflect it automatically.
+   -------------------------------------------------------------------------- */
+
+const CURRENT_REGISTRANTS = 0;   // <-- update this number as people register
+const TOTAL_CAPACITY = 50;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const countEl = document.getElementById('capacitySpotsCount');
+  const fillEl = document.getElementById('capacityBarFill');
+  if (!countEl || !fillEl) return;
+
+  countEl.textContent = `${CURRENT_REGISTRANTS} of ${TOTAL_CAPACITY}`;
+  const pct = Math.min(100, Math.round((CURRENT_REGISTRANTS / TOTAL_CAPACITY) * 100));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        fillEl.style.width = pct + '%';
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  observer.observe(fillEl);
+});
+
+/* --------------------------------------------------------------------------
+   FAQ ACCORDION
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!question || !answer) return;
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      if (isOpen) {
+        item.classList.remove('is-open');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('is-open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+});
