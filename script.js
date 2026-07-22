@@ -328,3 +328,47 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.style.setProperty('--sweep-delay', sweepDelay + 's');
   });
 });
+
+/* --------------------------------------------------------------------------
+   IMAGE LIGHTBOX (invite flyers)
+   --------------------------------------------------------------------------
+   Any <img> with class="lightbox-img" becomes clickable to expand. The
+   overlay is built once and reused for whichever image was clicked, so no
+   extra markup is needed on individual pages beyond the class.
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const triggers = document.querySelectorAll('.lightbox-img');
+  if (!triggers.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img src="" alt="">';
+  document.body.appendChild(overlay);
+
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+
+  const openLightbox = (src, alt) => {
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLightbox = () => {
+    overlay.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((img) => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeLightbox();
+  });
+});
