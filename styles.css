@@ -1206,7 +1206,7 @@ footer {
 
 .event-card-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
@@ -1308,6 +1308,9 @@ footer {
 .event-card.is-placeholder h3 { color: #7A8C94; }
 .event-card.is-placeholder p.desc { color: #8CA3AE; }
 
+@media (max-width: 1000px) {
+  .event-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 780px) {
   .event-card-grid { grid-template-columns: 1fr; }
 }
