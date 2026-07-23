@@ -283,15 +283,18 @@ p { max-width: 62ch; }
     box-shadow: none;
     border: none;
     background: var(--cream-deep);
-    max-height: 0;
-    overflow: hidden;
-    padding: 0;
+    display: none;
+    padding: 8px;
     margin-top: 0;
-    transition: max-height 0.25s ease, padding 0.25s ease;
+    width: 100%;
+    min-width: 0;
+  }
+  .nav-dropdown-menu a {
+    width: 100%;
+    white-space: normal;
   }
   .nav-dropdown.is-open .nav-dropdown-menu {
-    max-height: 200px;
-    padding: 8px;
+    display: block;
     margin-top: 8px;
   }
 }
