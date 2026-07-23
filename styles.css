@@ -1268,36 +1268,6 @@ footer {
   max-width: none;
 }
 
-/* ---------- Live capacity indicator ---------- */
-
-.capacity-indicator {
-  max-width: 460px;
-  margin: 0 auto 44px;
-}
-.capacity-indicator-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: 0.02em;
-}
-.capacity-bar {
-  height: 8px;
-  border-radius: 20px;
-  background: var(--cream-deep);
-  overflow: hidden;
-}
-.capacity-bar-fill {
-  height: 100%;
-  border-radius: 20px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 100%);
-  width: 0%;
-  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 /* ---------- Events listing page ---------- */
 
 .events-intro { text-align: center; max-width: 62ch; margin: 0 auto; }
