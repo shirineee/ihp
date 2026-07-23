@@ -965,17 +965,22 @@ footer {
   min-height: 280px;
   display: flex;
   align-items: center;
-  border: none;
+  border: 1px solid var(--navy);
 }
 .expect-item.has-image .expect-photo {
   position: absolute;
   inset: 0;
   z-index: 1;
+  overflow: hidden;
 }
 .expect-item.has-image .expect-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+}
+.expect-item.has-image:hover .expect-photo img {
+  transform: scale(1.08);
 }
 .expect-item.has-image .expect-photo::after {
   content: '';
