@@ -1472,14 +1472,38 @@ footer {
   .teaser-meta { justify-content: center; }
   .detail-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
-  .expect-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .expect-grid { grid-template-columns: 1fr; gap: 0; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .expect-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+    padding: 18px 4px;
+    border: none;
+    border-bottom: 1px solid var(--cream-deep);
+    border-radius: 0;
+    background: none;
+  }
+  .expect-item:last-child { border-bottom: none; }
+  .expect-item .spark { margin-bottom: 0; margin-top: 2px; flex-shrink: 0; }
+  .expect-item h3 { margin-bottom: 4px; font-size: 1rem; }
+  .expect-item p { font-size: 0.88rem; }
   .wisdom-keeper, .wisdom-keeper.is-reversed {
     grid-template-columns: 1fr;
     text-align: center;
     padding: 28px;
   }
-  .wisdom-keeper .wk-photo-col { order: 1; max-width: 220px; margin: 0 auto; }
-  .wisdom-keeper .wk-body { order: 2; }
+  .wisdom-keeper .wk-photo-col,
+  .wisdom-keeper.is-reversed .wk-photo-col {
+    order: 1;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .wisdom-keeper .wk-body,
+  .wisdom-keeper.is-reversed .wk-body {
+    order: 2;
+  }
   .wk-body .wk-bio { text-align: left; }
   .wisdom-keeper-placeholders { grid-template-columns: 1fr; }
   .nav-links {
