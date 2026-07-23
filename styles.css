@@ -296,6 +296,7 @@ p { max-width: 62ch; }
   .nav-dropdown.is-open .nav-dropdown-menu {
     display: block;
     margin-top: 8px;
+    transform: none;
   }
 }
 .nav-links a.is-current:not(.btn-nav)::after { width: 100%; }
