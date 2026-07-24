@@ -956,8 +956,14 @@ footer {
 .expect-item h3 { margin-bottom: 8px; font-size: 1.1rem; }
 .expect-item p { font-size: 0.92rem; color: #55564F; }
 
-/* ---------- Expect photo block (sits between card rows) ---------- */
+/* ---------- Expect photo row (a clean visual break between card rows) ---------- */
 
+.expect-photo-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 40px 0;
+}
 .expect-photo-block {
   border: 1px solid var(--navy);
   border-radius: 6px;
@@ -976,18 +982,33 @@ footer {
 }
 
 @media (max-width: 620px) {
+  .expect-photo-row { margin: 0; }
   .expect-photo-block { min-height: 220px; }
 
-  /* Alternate cards and photos on mobile instead of grouping them */
-  .expect-grid > *:nth-child(1) { order: 1; }  /* Movement */
-  .expect-grid > *:nth-child(2) { order: 2; }  /* Nourishing Food */
-  .expect-grid > *:nth-child(4) { order: 3; }  /* Movement photo */
-  .expect-grid > *:nth-child(3) { order: 4; }  /* Sound Healing */
-  .expect-grid > *:nth-child(7) { order: 5; }  /* Sacred Circles */
-  .expect-grid > *:nth-child(5) { order: 6; }  /* Sound Healing photo */
-  .expect-grid > *:nth-child(8) { order: 7; }  /* Meaningful Conversation */
-  .expect-grid > *:nth-child(9) { order: 8; }  /* A Breathtaking Setting */
-  .expect-grid > *:nth-child(6) { order: 9; }  /* Sacred Circles photo */
+  /* True alternation on mobile: each card followed immediately by its own
+     photo where one exists, then the three text-only cards at the end.
+     display:contents makes the three desktop sections "disappear" as far as
+     layout is concerned, so all 9 items become direct flex children here
+     and can be freely reordered regardless of which section they came from. */
+  .expect-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .expect-grid, .expect-photo-row {
+    display: contents;
+  }
+  .expect-item, .expect-photo-block {
+    margin-bottom: 20px;
+  }
+  .item--movement     { order: 1; }
+  .photo--movement     { order: 2; }
+  .item--sound        { order: 3; }
+  .photo--sound        { order: 4; }
+  .item--sacred        { order: 5; }
+  .photo--sacred        { order: 6; }
+  .item--nourishing    { order: 7; }
+  .item--meaningful    { order: 8; }
+  .item--breathtaking  { order: 9; margin-bottom: 0; }
 }
 
 /* ---------- Coming soon placeholder card ---------- */
