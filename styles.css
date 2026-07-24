@@ -584,6 +584,10 @@ p { max-width: 62ch; }
 /* ---------- Section spacing ---------- */
 
 section { padding: 96px 0; }
+
+/* ---------- Wildly Rooted page: tighter section rhythm ---------- */
+.page-wildly-rooted section { padding: 60px 0; }
+.page-wildly-rooted section.tight { padding: 44px 0; }
 section.tight { padding: 64px 0; }
 .bg-navy { background: var(--navy); color: var(--cream); }
 .bg-navy h2, .bg-navy h3 { color: var(--cream); }
@@ -962,15 +966,19 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin: 40px 0;
+  margin: 28px 0;
 }
 .expect-photo-row-2col {
   grid-template-columns: repeat(2, 1fr);
   max-width: 66.6%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .expect-grid-2col {
   grid-template-columns: repeat(2, 1fr);
   max-width: 66.6%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .expect-photo-block {
   border: 1px solid var(--navy);
