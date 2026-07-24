@@ -964,6 +964,14 @@ footer {
   gap: 28px;
   margin: 40px 0;
 }
+.expect-photo-row-2col {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 66.6%;
+}
+.expect-grid-2col {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 66.6%;
+}
 .expect-photo-block {
   border: 1px solid var(--navy);
   border-radius: 6px;
@@ -983,13 +991,12 @@ footer {
 
 @media (max-width: 620px) {
   .expect-photo-row { margin: 0; }
+  .expect-photo-row-2col, .expect-grid-2col { max-width: none; }
   .expect-photo-block { min-height: 220px; }
 
-  /* True alternation on mobile: each card followed immediately by its own
-     photo where one exists, then the three text-only cards at the end.
-     display:contents makes the three desktop sections "disappear" as far as
-     layout is concerned, so all 9 items become direct flex children here
-     and can be freely reordered regardless of which section they came from. */
+  /* Full 1:1 alternation on mobile — every card now has exactly one
+     matching photo, so this is a clean card, photo, card, photo... rhythm
+     regardless of which of the four desktop sections each item came from. */
   .expect-wrap {
     display: flex;
     flex-direction: column;
@@ -1000,15 +1007,16 @@ footer {
   .expect-item, .expect-photo-block {
     margin-bottom: 20px;
   }
-  .item--movement     { order: 1; }
-  .photo--movement     { order: 2; }
-  .item--sound        { order: 3; }
-  .photo--sound        { order: 4; }
-  .item--sacred        { order: 5; }
-  .photo--sacred        { order: 6; }
-  .item--nourishing    { order: 7; }
-  .item--meaningful    { order: 8; }
-  .item--breathtaking  { order: 9; margin-bottom: 0; }
+  .item--movement      { order: 1; }
+  .photo--movement      { order: 2; }
+  .item--nourishing     { order: 3; }
+  .photo--nourishing     { order: 4; }
+  .item--sound         { order: 5; }
+  .photo--sound         { order: 6; }
+  .item--sacred         { order: 7; }
+  .photo--sacred         { order: 8; }
+  .item--breathtaking   { order: 9; }
+  .photo--breathtaking   { order: 10; margin-bottom: 0; }
 }
 
 /* ---------- Coming soon placeholder card ---------- */
