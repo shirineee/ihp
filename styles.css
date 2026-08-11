@@ -951,6 +951,11 @@ section.tight { padding: 64px 0; }
   border-radius: 14px;
   box-shadow: 0 30px 60px -20px rgba(16, 49, 63, 0.35), 0 10px 24px -10px rgba(16, 49, 63, 0.22);
   border: 6px solid var(--white);
+  transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1), box-shadow 0.4s ease;
+}
+.invite-showcase img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 40px 80px -20px rgba(16, 49, 63, 0.45), 0 14px 30px -10px rgba(16, 49, 63, 0.28);
 }
 
 /* ---------- Closing mantra ---------- */

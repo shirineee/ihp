@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cards.forEach((card) => {
     const tier = card.dataset.tier;
+    if (!['early', 'general', 'last'].includes(tier)) return; // skip non-pricing cards (e.g. Community Support)
     const btn = card.querySelector('a.btn');
     const status = card.querySelector('.tier-window');
 
@@ -362,6 +363,56 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 8 4 11.4 12 12-8 .6-11.4 4-12 12-.6-8-4-11.4-12-12C8 11.4 11.4 8 12 0Z"/></svg></span>
       <h3>Registration Hasn't Opened Yet</h3>
       <p>Stay tuned — we'll share the link the moment it's live.</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const closeBtn = overlay.querySelector('.reg-modal-close');
+
+  const openModal = () => {
+    overlay.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeModal = () => {
+    overlay.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal();
+  });
+});
+
+/* --------------------------------------------------------------------------
+   "COMMUNITY SUPPORT" MODAL (Wildly Rooted)
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const triggers = document.querySelectorAll('.support-trigger');
+  if (!triggers.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'reg-modal-overlay';
+  overlay.innerHTML = `
+    <div class="reg-modal" style="max-width: 520px; text-align:left;">
+      <button class="reg-modal-close" aria-label="Close">&times;</button>
+      <h3 style="text-align:center;">Wildly Rooted Community Support</h3>
+      <p>Sometimes we're called to gather, heal, and reconnect during seasons when finances may make it harder to say yes.</p>
+      <p>If you're moving through a season of healing, transition, or change and need financial support to join us, this offering is for you. No judgment, no explanation needed — just an invitation to be held in community.</p>
+      <p>We believe healing is not meant to be done alone, and everyone deserves a space to pause, breathe, reconnect, and come home to themselves.</p>
+      <p>If your heart is calling you here, we'd be honored to make space for you.</p>
+      <p style="margin-top:20px; text-align:center;">Contact us at <a href="mailto:illuminate.her.path@gmail.com" style="color:var(--navy); text-decoration:underline; font-weight:600;">illuminate.her.path@gmail.com</a></p>
     </div>
   `;
   document.body.appendChild(overlay);
