@@ -342,3 +342,53 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeLightbox();
   });
 });
+
+/* --------------------------------------------------------------------------
+   "REGISTRATION NOT YET OPEN" MODAL
+   --------------------------------------------------------------------------
+   Any link with class="reg-trigger" opens this modal instead of navigating.
+   Built once and reused, same pattern as the image lightbox.
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const triggers = document.querySelectorAll('.reg-trigger');
+  if (!triggers.length) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'reg-modal-overlay';
+  overlay.innerHTML = `
+    <div class="reg-modal">
+      <button class="reg-modal-close" aria-label="Close">&times;</button>
+      <span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 8 4 11.4 12 12-8 .6-11.4 4-12 12-.6-8-4-11.4-12-12C8 11.4 11.4 8 12 0Z"/></svg></span>
+      <h3>Registration Hasn't Opened Yet</h3>
+      <p>Stay tuned — we'll share the link the moment it's live.</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const closeBtn = overlay.querySelector('.reg-modal-close');
+
+  const openModal = () => {
+    overlay.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeModal = () => {
+    overlay.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal();
+  });
+});

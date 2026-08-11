@@ -692,6 +692,120 @@ section.tight { padding: 64px 0; }
   cursor: zoom-in;
 }
 
+/* ---------- "Registration not yet open" modal ---------- */
+
+.reg-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(16, 49, 63, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.reg-modal-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.reg-modal {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 44px 36px 36px;
+  text-align: center;
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.5);
+  transform: scale(0.94) translateY(10px);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.reg-modal-overlay.is-visible .reg-modal {
+  transform: scale(1) translateY(0);
+}
+.reg-modal .spark {
+  width: 32px; height: 32px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.reg-modal h3 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+.reg-modal p {
+  color: #4A4A48;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.reg-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cream-deep);
+  color: var(--navy);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: background 0.2s ease;
+}
+.reg-modal-close:hover { background: var(--gold-soft); }
+
+/* ---------- City detail cards (Raising Conscious Kids) ---------- */
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.city-card {
+  background: var(--white);
+  border: 1px solid var(--navy);
+  border-radius: 10px;
+  padding: 32px 28px;
+}
+.city-card h3 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  font-size: 1.35rem;
+  margin: 8px 0 20px;
+}
+.city-detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+}
+.city-detail-list li {
+  font-size: 0.92rem;
+  color: #3E3E3B;
+  line-height: 1.7;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-deep);
+  margin-bottom: 8px;
+}
+.city-detail-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.city-detail-list li strong { color: var(--navy); }
+.city-card .btn { width: 100%; text-align: center; }
+
+@media (max-width: 720px) {
+  .city-grid { grid-template-columns: 1fr; }
+}
+
 .lightbox-overlay {
   position: fixed;
   inset: 0;
