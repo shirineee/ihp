@@ -960,6 +960,52 @@ section.tight { padding: 64px 0; }
 
 /* ---------- Closing mantra ---------- */
 
+.authenticity-photo-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.authenticity-photo-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('images/authenticity-quote.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  z-index: -2;
+  animation: heroKenBurns 26s ease-in-out infinite alternate;
+}
+.authenticity-photo-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(16,49,63,0.42) 0%, rgba(16,49,63,0.32) 50%, rgba(16,49,63,0.42) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .authenticity-photo-section::before { animation: none; }
+}
+.authenticity-quote {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 160px 0;
+}
+.authenticity-quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+  line-height: 1.6;
+  color: var(--cream);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+.authenticity-quote p + p {
+  margin-top: 22px;
+}
+
+@media (max-width: 720px) {
+  .authenticity-quote { padding: 110px 0; }
+}
+
 .mantra-photo-section {
   position: relative;
   overflow: hidden;
