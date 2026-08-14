@@ -1006,6 +1006,12 @@ section.tight { padding: 64px 0; }
   .authenticity-quote { padding: 110px 0; }
 }
 
+@media (min-width: 641px) {
+  .authenticity-photo-section::before {
+    background-position: center 62%;
+  }
+}
+
 .mantra-photo-section {
   position: relative;
   overflow: hidden;
