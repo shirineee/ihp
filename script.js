@@ -102,7 +102,7 @@ const DATE_OVERRIDE = null;
 function getActiveTier() {
   if (DATE_OVERRIDE) return DATE_OVERRIDE;
   const today = new Date();
-  const earlyEnds = new Date('2026-08-15T23:59:59');
+  const earlyEnds = new Date('2026-09-15T23:59:59');
   const generalEnds = new Date('2026-09-23T23:59:59');
 
   if (today <= earlyEnds) return 'early';
