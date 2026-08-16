@@ -48,6 +48,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
+   COMMUNITY SUPPORT MODAL (Wildly Rooted pricing section)
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('supportModal');
+  const openBtn = document.getElementById('supportModalOpen');
+  if (!modal || !openBtn) return;
+
+  const closeBtn = document.getElementById('supportModalClose');
+
+  const openModal = () => modal.classList.add('is-visible');
+  const closeModal = () => modal.classList.remove('is-visible');
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-visible')) closeModal();
+  });
+});
+
+/* --------------------------------------------------------------------------
    PRICING TIERS
    --------------------------------------------------------------------------
    Stripe currently only has ONE payment link (the $475 Early rate). A single
@@ -69,10 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const TIER_LINKS = {
   early: 'https://buy.stripe.com/dRmcN72tedGAeGy1vk2VG01',
   general: 'https://buy.stripe.com/dRmcN72tedGAeGy1vk2VG01', // TODO: replace with $500 link
-  last: 'https://buy.stripe.com/dRmcN72tedGAeGy1vk2VG01',    // TODO: replace with $550 link
 };
 
-// Set to a tier name ('early' | 'general' | 'last') to force a tier
+// Set to a tier name ('early' | 'general') to force a tier
 // regardless of date, e.g. if a tier sells out on registrant count.
 const DATE_OVERRIDE = null;
 
@@ -80,12 +103,10 @@ function getActiveTier() {
   if (DATE_OVERRIDE) return DATE_OVERRIDE;
   const today = new Date();
   const earlyEnds = new Date('2026-08-15T23:59:59');
-  const generalEnds = new Date('2026-09-16T23:59:59');
-  const lastEnds = new Date('2026-09-23T23:59:59');
+  const generalEnds = new Date('2026-09-23T23:59:59');
 
   if (today <= earlyEnds) return 'early';
   if (today <= generalEnds) return 'general';
-  if (today <= lastEnds) return 'last';
   return 'closed';
 }
 
@@ -97,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cards.forEach((card) => {
     const tier = card.dataset.tier;
-    if (!['early', 'general', 'last'].includes(tier)) return; // skip non-pricing cards (e.g. Community Support)
     const btn = card.querySelector('a.btn');
     const status = card.querySelector('.tier-window');
 
@@ -125,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       card.classList.remove('is-active');
       if (btn) {
-        const tierOrder = ['early', 'general', 'last'];
+        const tierOrder = ['early', 'general'];
         const isPast = tierOrder.indexOf(tier) < tierOrder.indexOf(active);
         btn.classList.add('btn-disabled');
         btn.classList.remove('btn-gold', 'btn-outline');
@@ -341,105 +361,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeLightbox();
-  });
-});
-
-/* --------------------------------------------------------------------------
-   "REGISTRATION NOT YET OPEN" MODAL
-   --------------------------------------------------------------------------
-   Any link with class="reg-trigger" opens this modal instead of navigating.
-   Built once and reused, same pattern as the image lightbox.
-   -------------------------------------------------------------------------- */
-
-document.addEventListener('DOMContentLoaded', () => {
-  const triggers = document.querySelectorAll('.reg-trigger');
-  if (!triggers.length) return;
-
-  const overlay = document.createElement('div');
-  overlay.className = 'reg-modal-overlay';
-  overlay.innerHTML = `
-    <div class="reg-modal">
-      <button class="reg-modal-close" aria-label="Close">&times;</button>
-      <span class="spark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c.6 8 4 11.4 12 12-8 .6-11.4 4-12 12-.6-8-4-11.4-12-12C8 11.4 11.4 8 12 0Z"/></svg></span>
-      <h3>Registration Hasn't Opened Yet</h3>
-      <p>Stay tuned — we'll share the link the moment it's live.</p>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-
-  const closeBtn = overlay.querySelector('.reg-modal-close');
-
-  const openModal = () => {
-    overlay.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-  };
-  const closeModal = () => {
-    overlay.classList.remove('is-visible');
-    document.body.style.overflow = '';
-  };
-
-  triggers.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal();
-  });
-});
-
-/* --------------------------------------------------------------------------
-   "COMMUNITY SUPPORT" MODAL (Wildly Rooted)
-   -------------------------------------------------------------------------- */
-
-document.addEventListener('DOMContentLoaded', () => {
-  const triggers = document.querySelectorAll('.support-trigger');
-  if (!triggers.length) return;
-
-  const overlay = document.createElement('div');
-  overlay.className = 'reg-modal-overlay';
-  overlay.innerHTML = `
-    <div class="reg-modal" style="max-width: 520px; text-align:left;">
-      <button class="reg-modal-close" aria-label="Close">&times;</button>
-      <h3 style="text-align:center;">Wildly Rooted Community Support</h3>
-      <p>Sometimes we're called to gather, heal, and reconnect during seasons when finances may make it harder to say yes.</p>
-      <p>If you're moving through a season of healing, transition, or change and need financial support to join us, this offering is for you. No judgment, no explanation needed — just an invitation to be held in community.</p>
-      <p>We believe healing is not meant to be done alone, and everyone deserves a space to pause, breathe, reconnect, and come home to themselves.</p>
-      <p>If your heart is calling you here, we'd be honored to make space for you.</p>
-      <p style="margin-top:20px; text-align:center;">Contact us at <a href="mailto:illuminate.her.path@gmail.com" style="color:var(--navy); text-decoration:underline; font-weight:600;">illuminate.her.path@gmail.com</a></p>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-
-  const closeBtn = overlay.querySelector('.reg-modal-close');
-
-  const openModal = () => {
-    overlay.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-  };
-  const closeModal = () => {
-    overlay.classList.remove('is-visible');
-    document.body.style.overflow = '';
-  };
-
-  triggers.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal();
   });
 });
