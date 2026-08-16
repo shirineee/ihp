@@ -1730,6 +1730,7 @@ footer {
 }
 .masonry-item img {
   width: 100%;
+  height: auto;
   display: block;
 }
 @media (prefers-reduced-motion: reduce) {
