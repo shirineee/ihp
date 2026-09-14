@@ -75,7 +75,7 @@ function getActiveTier() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.price-card');
+  const cards = document.querySelectorAll('#pricing .price-card');
   if (!cards.length) return;
 
   const active = getActiveTier();
