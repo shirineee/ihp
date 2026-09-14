@@ -660,6 +660,26 @@ section.tight { padding: 64px 0; }
 }
 
 .story-copy p { margin-bottom: 20px; color: #3E3E3B; }
+
+/* ---------- Floating in-article photo ---------- */
+.float-photo {
+  float: right;
+  width: 300px;
+  margin: 6px 0 24px 40px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -28px rgba(16, 49, 63, 0.4), 0 10px 24px -10px rgba(16, 49, 63, 0.2);
+  border: 6px solid var(--white);
+}
+.float-photo img { width: 100%; display: block; }
+@media (max-width: 680px) {
+  .float-photo {
+    float: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 28px;
+  }
+}
 .story-copy p:last-of-type { margin-bottom: 0; }
 .story-copy .signoff {
   margin-top: 28px;
