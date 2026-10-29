@@ -542,7 +542,7 @@ p { max-width: 62ch; }
 /* ---------- Highlighted inline text accents ---------- */
 
 .text-shimmer-gold {
-  background-image: linear-gradient(100deg, #C7862F 0%, #F6D488 20%, #FFF3D0 40%, #E8A24A 55%, #C7862F 75%, #F6D488 100%);
+  background-image: linear-gradient(100deg, #9A5B14 0%, #B8741F 20%, #C7862F 40%, #A8661A 55%, #9A5B14 75%, #B8741F 100%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -551,6 +551,9 @@ p { max-width: 62ch; }
   animation: shimmerMove 5s linear infinite;
   font-weight: 700;
   font-style: italic;
+  padding-right: 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 @media (prefers-reduced-motion: reduce) {
   .text-shimmer-gold { animation: none; }
