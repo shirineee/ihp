@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Illuminate Her Path//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:regina-louise-book-launch@illuminateherpath.com
+DTSTAMP:20261029T000000Z
+DTSTART:20261118T020000Z
+DTEND:20261118T043000Z
+SUMMARY:Regina Louise Book Launch: Unladylike — Illuminate Her Path
+LOCATION:Assembly Wealth\, 319 Miller Ave\, Mill Valley\, CA 94941
+DESCRIPTION:An evening with author\, poet and child advocate Regina Louise\
+ , celebrating the launch of Unladylike: A Mythopoetic Reclamation of Love.
+  Light bites and refreshments provided.\n\nEvent details: https://illumina
+ teherpath.com/events/regina-louise-book-launch/
+URL:https://illuminateherpath.com/events/regina-louise-book-launch/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Regina Louise Book Launch: Unladylike — Illuminate Her Path
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

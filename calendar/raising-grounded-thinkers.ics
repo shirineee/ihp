@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Illuminate Her Path//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:raising-grounded-thinkers@illuminateherpath.com
+DTSTAMP:20261029T000000Z
+DTSTART:20261106T023000Z
+DTEND:20261106T043000Z
+SUMMARY:Raising Grounded\, Independent Thinkers — Illuminate Her Path
+LOCATION:Assembly Wealth\, 319 Miller Ave\, Mill Valley\, CA 94941
+DESCRIPTION:A panel on teen mental health and digital wellness with Arin Ba
+ ss\, Genoveva La Placa and Tiffany Wycoff\, moderated by Shirin Aryanpour.
+  Sponsored by Assembly Wealth.\n\nEvent details: https://illuminateherpath
+ .com/events/raising-grounded-thinkers/
+URL:https://illuminateherpath.com/events/raising-grounded-thinkers/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Raising Grounded\, Independent Thinkers — Illuminate Her Path
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
