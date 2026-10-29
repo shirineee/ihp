@@ -327,3 +327,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeLightbox();
   });
 });
+
+/* --------------------------------------------------------------------------
+   SHARE BUTTON (event pages)
+   --------------------------------------------------------------------------
+   Any button with class="js-share" opens the phone's share sheet (Messages,
+   WhatsApp, Mail, etc.). Where that isn't available (most desktop browsers)
+   it copies the event link instead and briefly says "Link copied".
+   -------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.js-share');
+  if (!buttons.length) return;
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  const url = ogUrl ? ogUrl.content : window.location.href.split('#')[0];
+
+  buttons.forEach((btn) => {
+    const label = btn.querySelector('.js-share-label');
+    const original = label ? label.textContent : '';
+
+    btn.addEventListener('click', async () => {
+      const data = { title: document.title, text: btn.dataset.shareText || '', url };
+
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) { /* closed the share sheet */ }
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch (e) {
+        window.prompt('Copy this link to share:', url);
+        return;
+      }
+      if (label) {
+        label.textContent = 'Link copied';
+        setTimeout(() => { label.textContent = original; }, 2200);
+      }
+    });
+  });
+});
