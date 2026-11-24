@@ -5,16 +5,18 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:holiday-gathering-at-the-atelier@illuminateherpath.com
-DTSTAMP:20261029T000000Z
+SEQUENCE:1
+DTSTAMP:20261124T000000Z
 DTSTART:20261209T200000Z
 DTEND:20261210T023000Z
 SUMMARY:A Holiday Gathering at the Atelier — Illuminate Her Path
 LOCATION:Ashley Morgan Atelier\, 23 Poplar Avenue\, Suite 2\, Ross\, CA
-DESCRIPTION:Holiday shopping with Ashley Morgan fine jewelry and Le Noué h
- andbags\, light bites and festive refreshments. Louisa Sushansky\, APRN\, 
- speaks on women's wellness at 4:30 PM. Free\; please RSVP to illuminate.he
- r.path@gmail.com.\n\nEvent details: https://illuminateherpath.com/events/h
- oliday-gathering-at-the-atelier/
+DESCRIPTION:Holiday shopping with Ashley Morgan fine jewelry\, Le Noué han
+ dbags and original artwork by Bree Cutts Studio and Julie Harris Art\, plu
+ s light bites and festive refreshments and a conversation on women's welln
+ ess with Louisa Sushansky\, APRN. Free\; please RSVP to illuminate.her.pat
+ h@gmail.com.\n\nEvent details: https://illuminateherpath.com/events/holida
+ y-gathering-at-the-atelier/
 URL:https://illuminateherpath.com/events/holiday-gathering-at-the-atelier/
 BEGIN:VALARM
 ACTION:DISPLAY
